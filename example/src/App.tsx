@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-jsi-basics';
+import { jsiMultiply } from 'react-native-jsi-basics';
 
-const result = multiply(3, 7);
+const result = jsiMultiply(12, 4);
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text style={styles.result}>Result: {result}</Text>
     </View>
   );
 }
@@ -23,5 +23,9 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginVertical: 20,
+  },
+  result: {
+    fontSize: 35,
+    fontWeight: '500',
   },
 });

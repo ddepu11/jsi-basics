@@ -1,21 +1,36 @@
 #import "JsiBasics.h"
+#import <React/RCTBridge+Private.h>
+#import <jsi/jsi.h>
 
 @implementation JsiBasics
-RCT_EXPORT_MODULE()
 
-// Don't compile this code when we build for the old architecture.
-#ifdef RCT_NEW_ARCH_ENABLED
-- (NSNumber *)multiply:(double)a b:(double)b {
-    NSNumber *result = @(jsibasics::multiply(a, b));
+RCT_EXPORT_MODULE(JsiBasics)
 
-    return result;
+using namespace facebook;
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install) {
+    NSLog(@"Installing JSI Examples :) ");
+    
+    RCTBridge* bridge = [RCTBridge currentBridge];
+    RCTCxxBridge* cxxBridge = (RCTCxxBridge*)bridge;
+
+    if (cxxBridge == nil) {
+        return @false;
+    }
+
+    auto jsiRuntime = (jsi::Runtime*)cxxBridge.runtime;
+
+    if (jsiRuntime == nil) {
+        return @false;
+    }
+
+    auto& runtime = *jsiRuntime;
+
+    initializeJSIBasics(runtime);
+    
+    NSLog(@"Installed JSI Examples :) ");
+
+    return @true;
 }
-
-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
-    (const facebook::react::ObjCTurboModule::InitParams &)params
-{
-    return std::make_shared<facebook::react::NativeJsiBasicsSpecJSI>(params);
-}
-#endif
 
 @end
