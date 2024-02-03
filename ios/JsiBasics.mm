@@ -4,10 +4,14 @@
 
 @implementation JsiBasics
 
+// Module name JsiBasics
+// Declares the class as a React Native module named JsiBasics
 RCT_EXPORT_MODULE(JsiBasics)
 
 using namespace facebook;
 
+// This install func is available to JS side to be called.
+// ex: JsiBasics.install()
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install) {
     NSLog(@"Installing JSI Examples....");
     
