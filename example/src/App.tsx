@@ -8,13 +8,36 @@ const result = JSIBasics.jsiMultiply(40, 5);
 export default function App() {
   const { experimentWithFuntion } = JSIBasics;
 
+  // String
   // const funcExpResult = experimentWithFuntion('Facebook');
-  const funcExpResult = experimentWithFuntion({
-    width: '100px',
-    comName: 'Input',
-    isDisabled: true,
-    index: 0,
-  });
+
+  // Object
+  // const funcExpResult = experimentWithFuntion({
+  //   width: '100px',
+  //   comName: 'Input',
+  //   isDisabled: true,
+  //   index: 0,
+  // });
+
+  // Array
+  // const funcExpResult = experimentWithFuntion([
+  //   'James',
+  //   false,
+  //   undefined,
+  //   null,
+  //   { name: 'Mohan' },
+  //   ['Rohan', 'Ali'],
+  //   1,
+  // ]);
+
+  // Null, gives tyoeof as Object
+  // const funcExpResult =
+  //   experimentWithFuntion('') === null ? 'null' : 'not-null';
+
+  // Undefined, gives tyoeof as undefined
+  const funcExpResult =
+    experimentWithFuntion('') === undefined ? 'undefined' : 'not-undefined';
+
   console.log('funcExpResult: ', funcExpResult);
 
   return (
@@ -24,7 +47,7 @@ export default function App() {
 
         <View style={styles.devider} />
 
-        {/* <Text style={styles.result}>Func Experiments: {funcExpResult}</Text> */}
+        <Text style={styles.result}>Func Experiments: {funcExpResult}</Text>
         <Text style={styles.result}>Type: {typeof funcExpResult}</Text>
       </View>
     </SafeAreaView>

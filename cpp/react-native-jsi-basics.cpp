@@ -49,26 +49,53 @@ void initializeJSIBasics(jsi::Runtime &runtime){
         }
 
 //      Casting to different types, and returning those values
+        
 //      String
 //        string stringArgs = args[0].asString(runtime).utf8(runtime);
 //        return jsi::String::createFromUtf8(runtime, stringArgs);
         
 //      Object
-        jsi::Object objectArg = args[0].asObject(runtime);
-        objectArg.setProperty(runtime, "isDisabled", jsi::Value(false));
-        objectArg.setProperty(runtime, "index", 2);
+//        jsi::Object objectArg = args[0].asObject(runtime);
+//        objectArg.setProperty(runtime, "isDisabled", jsi::Value(false));
+//        objectArg.setProperty(runtime, "index", 2);
+//        
+//        return objectArg;
         
-        return objectArg;
+//      Array (in js array are just an object)
+//        jsi::Array arrayArg = args[0].asObject(runtime).asArray(runtime);
+//        auto anElemet = arrayArg.getValueAtIndex(runtime, 4);
+//        int arraySize = (int)arrayArg.size(runtime);
+//
+//        jsi::Object arrayInfoObject = jsi::Object(runtime);
+//        arrayInfoObject.setProperty(runtime, "arrayItself", arrayArg);
+//        arrayInfoObject.setProperty(runtime, "anElementOfArray", anElemet);
+//        arrayInfoObject.setProperty(runtime, "arraySize", arraySize);
+//
+//        return arrayInfoObject;
+        
+//      Null value
+        
+//        jsi::Value nullVal = jsi::Value::null();
+//        OR
+//        jsi::Value nullVal = jsi::Value(nullptr);
+        
+//        return nullVal;
+        
+//      Undefined
+        jsi::Value undefinedValue = jsi::Value::undefined();
+        return undefinedValue;
         
     };
     
     jsi::Function experimentWithFuntion = jsi::Function::createFromHostFunction(runtime, jsi::PropNameID::forAscii(runtime, "experimentFunction"), 1, std::move(lambdaExperimentFunc));
     
     
+//  Adding JSI function to the JSI module object.
     jsi::Object module = jsi::Object(runtime);
     module.setProperty(runtime, "jsiMultiply", std::move(multiply));
     module.setProperty(runtime, "experimentWithFuntion", std::move(experimentWithFuntion));
     
+//  Register the JSI module object to the JS Runtime(global) and name it "__JsiBasics"
     runtime.global().setProperty(runtime, "__JsiBasics", std::move(module));
     
 };
