@@ -1,13 +1,11 @@
 import { NativeModules } from 'react-native';
 
-// NativeModules.
-
 declare global {
   function nativeCallSyncHook(): unknown;
-  var jsiMultiply: Function | undefined;
+  var __JsiBasics: Object | undefined;
 }
 
-if (global.jsiMultiply === undefined) {
+if (global.__JsiBasics === undefined) {
   const JsiBasics = NativeModules.JsiBasics;
 
   if (JsiBasics === null) {
@@ -24,15 +22,15 @@ if (global.jsiMultiply === undefined) {
     throw new Error('Could not install JsiBasics!');
   }
 
-  if (global.jsiMultiply === null) {
+  if (global.__JsiBasics === null) {
     throw new Error(
       'Could not install JsiBasics! The initiallzed function does not exists!!!'
     );
   }
 }
 
-const jsiMultiply = (a: number, b: number) => {
-  return global.jsiMultiply ? global.jsiMultiply(a, b) : undefined;
-};
+const proxy = global.__JsiBasics;
 
-export { jsiMultiply };
+export const JSIBasics = proxy as {
+  jsiMultiply: (a: number, b: number) => number;
+};

@@ -39,8 +39,12 @@ void initializeJSIBasics(jsi::Runtime &runtime){
     };
     
 
-    jsi::Function multiply = jsi::Function::createFromHostFunction(runtime, jsi::PropNameID::forAscii(runtime, "multiplu"), 0, std::move(multiplyLambda));
+    jsi::Function multiply = jsi::Function::createFromHostFunction(runtime, jsi::PropNameID::forAscii(runtime, "multiply"), 0, std::move(multiplyLambda));
     
-    runtime.global().setProperty(runtime, "jsiMultiply",std::move(multiply));
+    
+    jsi::Object module = jsi::Object(runtime);
+    module.setProperty(runtime, "jsiMultiply", std::move(multiply));
+    
+    runtime.global().setProperty(runtime, "__JsiBasics", std::move(module));
     
 };

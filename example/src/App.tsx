@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { jsiMultiply } from 'react-native-jsi-basics';
+import { JSIBasics } from 'react-native-jsi-basics';
 
-const result = jsiMultiply(12, 4);
+const result = JSIBasics.jsiMultiply(40, 5);
 
 export default function App() {
   return (
