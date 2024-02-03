@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
 import { JSIBasics } from 'react-native-jsi-basics';
 
 const result = JSIBasics.jsiMultiply(40, 5);
@@ -8,20 +8,28 @@ const result = JSIBasics.jsiMultiply(40, 5);
 export default function App() {
   const { experimentWithFuntion } = JSIBasics;
 
+  // const funcExpResult = experimentWithFuntion('Facebook');
+  const funcExpResult = experimentWithFuntion('Facebook');
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.result}>
-        Result: {result} {experimentWithFuntion(2)}
-      </Text>
-    </View>
+    <SafeAreaView style={styles.safeAreaView}>
+      <View style={styles.container}>
+        <Text style={styles.result}>Multiplication Res: {result}</Text>
+
+        <View style={styles.devider} />
+
+        <Text style={styles.result}>Func Experiments: {funcExpResult}</Text>
+        <Text style={styles.result}>Type: {typeof funcExpResult}</Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeAreaView: { flex: 1 },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 5,
   },
   box: {
     width: 60,
@@ -29,7 +37,14 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   result: {
-    fontSize: 35,
-    fontWeight: '500',
+    fontSize: 30,
+    fontWeight: '400',
+  },
+
+  devider: {
+    height: 1,
+    backgroundColor: '#999',
+    width: '100%',
+    marginVertical: 20,
   },
 });

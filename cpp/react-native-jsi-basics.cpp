@@ -40,19 +40,24 @@ void initializeJSIBasics(jsi::Runtime &runtime){
     };
     jsi::Function multiply = jsi::Function::createFromHostFunction(runtime, jsi::PropNameID::forAscii(runtime, "multiply"), 0, std::move(multiplyLambda));
     
+//    #################### Experiments with Function's Arguments ########################
     
     auto lambdaExperimentFunc = [](jsi::Runtime &runtime,const jsi::Value &thisValue, const jsi::Value *args, size_t count)->jsi::Value {
             
         if(count<1){
             throw  jsi::JSError(runtime, "Please pass atleast one argument!!!");
         }
-            
+
+//      Casting to different types, and returning those values
+//      String
+        string stringArgs = args[0].asString(runtime).utf8(runtime);
+        return jsi::String::createFromUtf8(runtime, stringArgs);
+        
+//      Object
         
         
-        
-        
-        return jsi::Value(2);
     };
+    
     jsi::Function experimentWithFuntion = jsi::Function::createFromHostFunction(runtime, jsi::PropNameID::forAscii(runtime, "experimentFunction"), 1, std::move(lambdaExperimentFunc));
     
     
