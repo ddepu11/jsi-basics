@@ -82,8 +82,23 @@ void initializeJSIBasics(jsi::Runtime &runtime){
 //        return nullVal;
         
 //      Undefined
-        jsi::Value undefinedValue = jsi::Value::undefined();
-        return undefinedValue;
+//        jsi::Value undefinedValue = jsi::Value::undefined();
+//        return undefinedValue;
+//     ################################### CASTINGS ENDS ########################################
+        
+//      Create an Array
+        
+        jsi::Array anArray = jsi::Array(runtime, 7);
+        
+        anArray.setValueAtIndex(runtime, 0, jsi::String::createFromUtf8(runtime, "Mohan"));
+        anArray.setValueAtIndex(runtime, 1, jsi::String::createFromUtf8(runtime, "Rohan"));
+        anArray.setValueAtIndex(runtime, 2, jsi::String::createFromUtf8(runtime, "Gopal"));
+        anArray.setValueAtIndex(runtime, 3, jsi::Value::undefined());
+        anArray.setValueAtIndex(runtime, 4, jsi::Value::null());
+        anArray.setValueAtIndex(runtime, 5, jsi::Object(runtime));
+        anArray.setValueAtIndex(runtime, 6, jsi::Array(runtime,0));
+        
+        return anArray;
         
     };
     

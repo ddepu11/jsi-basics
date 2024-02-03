@@ -35,8 +35,11 @@ export default function App() {
   //   experimentWithFuntion('') === null ? 'null' : 'not-null';
 
   // undefined, gives tyoeof as undefined
-  const funcExpResult =
-    experimentWithFuntion('') === undefined ? 'undefined' : 'not-undefined';
+  // const funcExpResult =
+  //   experimentWithFuntion('') === undefined ? 'undefined' : 'not-undefined';
+
+  // Returns an Array, typeof array is an object
+  const funcExpResult = experimentWithFuntion('');
 
   console.log('funcExpResult: ', funcExpResult);
 
@@ -47,7 +50,7 @@ export default function App() {
 
         <View style={styles.devider} />
 
-        <Text style={styles.result}>Func Experiments: {funcExpResult}</Text>
+        {/* <Text style={styles.result}>Func Experiments: {funcExpResult}</Text> */}
         <Text style={styles.result}>Type: {typeof funcExpResult}</Text>
       </View>
     </SafeAreaView>
