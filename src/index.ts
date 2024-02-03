@@ -33,5 +33,16 @@ const proxy = global.__JsiBasics;
 
 export const JSIBasics = proxy as {
   jsiMultiply: (a: number, b: number) => number;
+
   experimentWithFuntion: (argument: any) => any;
+
+  MyObject: {
+    stringArg: string;
+    doSomeThing: {
+      name: string;
+      lastName: undefined;
+      email: string;
+      isAvailable: boolean;
+    };
+  };
 };

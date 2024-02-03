@@ -1,12 +1,19 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  SafeAreaView,
+  Pressable,
+  Alert,
+} from 'react-native';
 import { JSIBasics } from 'react-native-jsi-basics';
 
 const result = JSIBasics.jsiMultiply(40, 5);
 
 export default function App() {
-  const { experimentWithFuntion } = JSIBasics;
+  const { experimentWithFuntion, MyObject } = JSIBasics;
 
   // String
   // const funcExpResult = experimentWithFuntion('Facebook');
@@ -55,6 +62,57 @@ export default function App() {
 
         {/* <Text style={styles.result}>Func Experiments: {funcExpResult}</Text> */}
         <Text style={styles.result}>Type: {typeof funcExpResult}</Text>
+
+        <View style={styles.devider} />
+
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            Alert.alert(MyObject.stringArg);
+          }}
+        >
+          <Text style={styles.buttonText}>Get stringArg initial value</Text>
+        </Pressable>
+
+        <View style={styles.devider} />
+
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            MyObject.stringArg = 'A new Value!!!';
+            Alert.alert('Set New Value! to MyObject.stringArg prop!');
+          }}
+        >
+          <Text style={styles.buttonText}>Set stringArg</Text>
+        </Pressable>
+
+        <View style={styles.devider} />
+
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            const MyObjectProps = Object.keys(MyObject);
+
+            console.log(MyObjectProps);
+            Alert.alert(MyObjectProps.toString());
+          }}
+        >
+          <Text style={styles.buttonText}>Get Props of MyObject</Text>
+        </Pressable>
+
+        <View style={styles.devider} />
+
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            const res = MyObject.doSomeThing;
+
+            console.log(res);
+            Alert.alert(String(res));
+          }}
+        >
+          <Text style={styles.buttonText}>Do SomeThing</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -81,5 +139,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#999',
     width: '100%',
     marginVertical: 20,
+  },
+
+  button: {
+    backgroundColor: 'royalblue',
+    padding: 10,
+    borderRadius: 15,
+    width: '65%',
+  },
+
+  buttonText: {
+    fontSize: 20,
+    color: '#FFF',
   },
 });
