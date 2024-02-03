@@ -50,11 +50,15 @@ void initializeJSIBasics(jsi::Runtime &runtime){
 
 //      Casting to different types, and returning those values
 //      String
-        string stringArgs = args[0].asString(runtime).utf8(runtime);
-        return jsi::String::createFromUtf8(runtime, stringArgs);
+//        string stringArgs = args[0].asString(runtime).utf8(runtime);
+//        return jsi::String::createFromUtf8(runtime, stringArgs);
         
 //      Object
+        jsi::Object objectArg = args[0].asObject(runtime);
+        objectArg.setProperty(runtime, "isDisabled", jsi::Value(false));
+        objectArg.setProperty(runtime, "index", 2);
         
+        return objectArg;
         
     };
     

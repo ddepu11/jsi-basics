@@ -9,7 +9,13 @@ export default function App() {
   const { experimentWithFuntion } = JSIBasics;
 
   // const funcExpResult = experimentWithFuntion('Facebook');
-  const funcExpResult = experimentWithFuntion('Facebook');
+  const funcExpResult = experimentWithFuntion({
+    width: '100px',
+    comName: 'Input',
+    isDisabled: true,
+    index: 0,
+  });
+  console.log('funcExpResult: ', funcExpResult);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -18,7 +24,7 @@ export default function App() {
 
         <View style={styles.devider} />
 
-        <Text style={styles.result}>Func Experiments: {funcExpResult}</Text>
+        {/* <Text style={styles.result}>Func Experiments: {funcExpResult}</Text> */}
         <Text style={styles.result}>Type: {typeof funcExpResult}</Text>
       </View>
     </SafeAreaView>
