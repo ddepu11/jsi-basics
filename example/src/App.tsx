@@ -6,9 +6,13 @@ import { JSIBasics } from 'react-native-jsi-basics';
 const result = JSIBasics.jsiMultiply(40, 5);
 
 export default function App() {
+  const { experimentWithFuntion } = JSIBasics;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.result}>Result: {result}</Text>
+      <Text style={styles.result}>
+        Result: {result} {experimentWithFuntion(2)}
+      </Text>
     </View>
   );
 }

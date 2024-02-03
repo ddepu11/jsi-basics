@@ -5,6 +5,7 @@ using namespace std;
 
 void initializeJSIBasics(jsi::Runtime &runtime){
     
+//  multiply function.
     auto multiplyLambda = [](jsi::Runtime &runtime,const jsi::Value &thisValue,const jsi::Value *args,size_t count)->jsi::Value{
         
         //  Throw an error
@@ -37,13 +38,27 @@ void initializeJSIBasics(jsi::Runtime &runtime){
                 return jsi::Value(arg1*arg2);
     
     };
-    
-
     jsi::Function multiply = jsi::Function::createFromHostFunction(runtime, jsi::PropNameID::forAscii(runtime, "multiply"), 0, std::move(multiplyLambda));
+    
+    
+    auto lambdaExperimentFunc = [](jsi::Runtime &runtime,const jsi::Value &thisValue, const jsi::Value *args, size_t count)->jsi::Value {
+            
+        if(count<1){
+            throw  jsi::JSError(runtime, "Please pass atleast one argument!!!");
+        }
+            
+        
+        
+        
+        
+        return jsi::Value(2);
+    };
+    jsi::Function experimentWithFuntion = jsi::Function::createFromHostFunction(runtime, jsi::PropNameID::forAscii(runtime, "experimentFunction"), 1, std::move(lambdaExperimentFunc));
     
     
     jsi::Object module = jsi::Object(runtime);
     module.setProperty(runtime, "jsiMultiply", std::move(multiply));
+    module.setProperty(runtime, "experimentWithFuntion", std::move(experimentWithFuntion));
     
     runtime.global().setProperty(runtime, "__JsiBasics", std::move(module));
     

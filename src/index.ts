@@ -33,4 +33,5 @@ const proxy = global.__JsiBasics;
 
 export const JSIBasics = proxy as {
   jsiMultiply: (a: number, b: number) => number;
+  experimentWithFuntion: (argument: any) => any;
 };
