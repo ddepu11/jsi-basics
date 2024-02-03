@@ -39,6 +39,9 @@ export default function App() {
   //   experimentWithFuntion('') === undefined ? 'undefined' : 'not-undefined';
 
   // Returns an Array, typeof array is an object
+  // const funcExpResult = experimentWithFuntion('');
+
+  // Returns an Object, typeof array is an object
   const funcExpResult = experimentWithFuntion('');
 
   console.log('funcExpResult: ', funcExpResult);

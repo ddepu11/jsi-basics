@@ -88,17 +88,28 @@ void initializeJSIBasics(jsi::Runtime &runtime){
         
 //      Create an Array
         
-        jsi::Array anArray = jsi::Array(runtime, 7);
+//        jsi::Array anArray = jsi::Array(runtime, 7);
+//        
+//        anArray.setValueAtIndex(runtime, 0, jsi::String::createFromUtf8(runtime, "Mohan"));
+//        anArray.setValueAtIndex(runtime, 1, jsi::String::createFromUtf8(runtime, "Rohan"));
+//        anArray.setValueAtIndex(runtime, 2, jsi::String::createFromUtf8(runtime, "Gopal"));
+//        anArray.setValueAtIndex(runtime, 3, jsi::Value::undefined());
+//        anArray.setValueAtIndex(runtime, 4, jsi::Value::null());
+//        anArray.setValueAtIndex(runtime, 5, jsi::Object(runtime));
+//        anArray.setValueAtIndex(runtime, 6, jsi::Array(runtime,0));
+//
+//        return anArray;
         
-        anArray.setValueAtIndex(runtime, 0, jsi::String::createFromUtf8(runtime, "Mohan"));
-        anArray.setValueAtIndex(runtime, 1, jsi::String::createFromUtf8(runtime, "Rohan"));
-        anArray.setValueAtIndex(runtime, 2, jsi::String::createFromUtf8(runtime, "Gopal"));
-        anArray.setValueAtIndex(runtime, 3, jsi::Value::undefined());
-        anArray.setValueAtIndex(runtime, 4, jsi::Value::null());
-        anArray.setValueAtIndex(runtime, 5, jsi::Object(runtime));
-        anArray.setValueAtIndex(runtime, 6, jsi::Array(runtime,0));
+//      Create an object
         
-        return anArray;
+          jsi::Object resObj = jsi::Object(runtime);
+        
+          resObj.setProperty(runtime, "isSelectable", jsi::Value(true));
+          resObj.setProperty(runtime, "innerObj", jsi::Object(runtime));
+          resObj.setProperty(runtime, "address", jsi::String::createFromUtf8(runtime, "H No 420, NS Palya, 3rd Main."));
+        
+          return resObj;
+        
         
     };
     
