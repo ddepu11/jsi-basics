@@ -30,11 +30,11 @@ export default function App() {
   //   1,
   // ]);
 
-  // Null, gives tyoeof as Object
+  // null, gives tyoeof as Object
   // const funcExpResult =
   //   experimentWithFuntion('') === null ? 'null' : 'not-null';
 
-  // Undefined, gives tyoeof as undefined
+  // undefined, gives tyoeof as undefined
   const funcExpResult =
     experimentWithFuntion('') === undefined ? 'undefined' : 'not-undefined';
 
